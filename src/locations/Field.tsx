@@ -9,10 +9,10 @@ const StyledRefDiv = styled.div<{ name: string }>`
     return props.name === "brand-specific"
       ? "5px solid blue"
       : props.name === "product-specific"
-      ? "5px solid yellow"
-      : props.name === "brand-product-specific"
-      ? "5px solid red"
-      : "5px solid green";
+        ? "5px solid yellow"
+        : props.name === "brand-product-specific"
+          ? "5px solid red"
+          : "5px solid green";
   }};
   border-radius: 8px;
 `;
@@ -64,12 +64,12 @@ const Field = () => {
           hasBrandTags && hasProductTags
             ? "brand-product-specific"
             : hasBrandTags
-            ? "brand-specific"
-            : hasProductTags
-            ? "product-specific"
-            : "common";
+              ? "brand-specific"
+              : hasProductTags
+                ? "product-specific"
+                : "common";
 
-        return appliedRefEntryType === props.entity.sys.contentType.sys.id ? (
+        return appliedRefEntryType.trim().split(',').includes(props.entity.sys.contentType.sys.id) ? (
           <StyledRefDiv name={className}>
             {
               // @ts-expect-error
